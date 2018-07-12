@@ -1,30 +1,64 @@
-import React, { Component } from 'react'
-import { Helmet } from 'react-helmet';
+import React, { Component } from 'react';
+import { HomepageView } from '../views';
+import { Api } from '../utils';
+
+const DEFAULT_ORGANISATION = 'nodejs';
 
 class HomepageContainer extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
+
     this.state = {
-        category: null
-    }
+      organisation: DEFAULT_ORGANISATION,
+      repositories: [],
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({
+      organisation: e.target.value,
+    });
+  }
+
+  fetchData() {
+    const {
+      organisation,
+    } = this.state;
+
+    Api.get(organisation).then((repositories) => {
+      this.setState({
+        repositories
+      })
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.fetchData();
+  }
+
+  componentWillMount() {
+    this.fetchData();
   }
 
   render() {
-    // const { message, user } = this.props
-    return (
-        <main>
-          <Helmet>
-            <title>
-              404 Not Found
-            </title>
-            <meta name="description" content="Github issue finder" />
-          </Helmet>
-          Homepage
-        </main>
-    )
-  }
+    const {
+      organisation,
+      repositories,
+    } = this.state;
 
+    return (
+      <HomepageView
+        onChange={this.onChange}
+        onSubmit={this.onSubmit}
+        organisation={organisation}
+        repositories={repositories}
+      />
+    );
+  }
 }
 
-export { HomepageContainer }
+export { HomepageContainer };

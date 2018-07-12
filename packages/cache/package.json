@@ -1,0 +1,16 @@
+{
+  "name": "@github-issues/cache",
+  "version": "0.0.1",
+  "description": "Github Issues Memcache Service",
+  "author": "Simon Staton <simon.staton@live.co.uk>",
+  "private": true,
+  "main": "server.js",
+  "engines": {
+    "node": ">=10.2.1"
+  },
+  "scripts": {},
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "memcached": "^2.2.2"
+  }
+}

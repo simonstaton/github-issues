@@ -5,6 +5,7 @@ const IS_DEV = process.env.NODE_ENV === 'development';
 module.exports = {
   mode: IS_DEV ? 'development' : 'production',
   watch: IS_DEV,
+  devtool: IS_DEV && 'source-map',
   entry: [
     path.join(__dirname, 'src/client.js'),
   ],

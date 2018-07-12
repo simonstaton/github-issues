@@ -4,13 +4,18 @@ import { Switch, Route } from 'react-router-dom';
 
 import {
   HomepageContainer,
-  IssuesContainer,
-  NotFoundContainer,
 } from './containers';
+
+import {
+  NotFoundView,
+} from './views';
 
 import {
   Header,
 } from './components';
+
+
+// <Route path="/:category" component={IssuesContainer} />
 
 const App = () => (
   <div>
@@ -20,8 +25,7 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={HomepageContainer} />
-      <Route path="/:category" component={IssuesContainer} />
-      <Route component={NotFoundContainer} />
+      <Route component={NotFoundView} />
     </Switch>
   </div>
 );

@@ -17,13 +17,11 @@ app
     resave: true,
     saveUninitialized: true,
   }))
-  .use('/scripts', Express.static(`${__dirname}/node_modules/@github-issues/react/dist/static`))
+  .use('/scripts', Express.static(`${__dirname}/../node_modules/@github-issues/react/dist/static`))
   .use(flash())
   .use('/api', api)
-  .use(errorHandler)
-
   .get('*', reactHandler)
-
+  .use(errorHandler)
   .listen(port, (error) => {
     if (error) {
       console.error(error);
