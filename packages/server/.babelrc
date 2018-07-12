@@ -1,0 +1,31 @@
+{
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "module-resolver", {
+            "alias": {
+              "@github-issues/react": "./node_modules/@github-issues/react/src"
+            }
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "module-resolver", {
+            "alias": {
+              "@github-issues/react": "./node_modules/@github-issues/react/dist"
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "presets": ["react", ["env", {
+    "targets": {
+      "browsers": ["last 2 versions", "safari >= 7"],
+    }
+  }]]
+}

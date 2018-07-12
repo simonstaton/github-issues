@@ -1,0 +1,21 @@
+{
+  "name": "github-issues",
+  "version": "0.0.1",
+  "description": "Github issue feed",
+  "author": "Simon Staton <simon.staton@live.co.uk>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:simonstaton/github-issues.git"
+  },
+  "scripts": {
+    "test:lint": "./node_modules/eslint/bin/eslint.js ./** --env browser,node"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-react": "^7.10.0",
+    "lerna": "^2.11.0"
+  }
+}

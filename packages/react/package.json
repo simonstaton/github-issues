@@ -1,0 +1,33 @@
+{
+  "name": "@github-issues/react",
+  "version": "0.0.1",
+  "description": "Github Issues React Components",
+  "author": "Simon Staton <simon.staton@live.co.uk>",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "watch": "NODE_ENV=development ./node_modules/webpack/bin/webpack.js -p --progress --config webpack.config.js",
+    "build": "npm run build:server && npm run build:client",
+    "build:client": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js -p --progress --config webpack.config.js",
+    "build:server": "./node_modules/rimraf/bin.js dist/ && babel src -d dist && babel src -d dist"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "path": "^0.12.7",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.16.0",
+    "webpack-cli": "^3.0.8"
+  }
+}
