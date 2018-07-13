@@ -10,11 +10,12 @@ class HomepageContainer extends Component {
 
     this.state = {
       organisation: DEFAULT_ORGANISATION,
+      request: '',
       repositories: [],
     };
 
-    this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
@@ -23,31 +24,40 @@ class HomepageContainer extends Component {
     });
   }
 
-  fetchData() {
-    const {
-      organisation,
-    } = this.state;
-
-    Api.get(organisation).then((repositories) => {
-      this.setState({
-        repositories
-      })
-    });
-  }
-
   onSubmit(e) {
     e.preventDefault();
     this.fetchData();
   }
 
-  componentWillMount() {
-    this.fetchData();
+  async fetchData() {
+    const {
+      organisation,
+    } = this.state;
+
+    this.setState({
+      request: 'loading',
+    });
+
+    let repositories;
+    try {
+      repositories = await Api.get(organisation);
+    } catch (err) {
+      return this.setState({
+        request: 'error',
+      });
+    }
+
+    this.setState({
+      repositories,
+      request: 'loaded',
+    });
   }
 
   render() {
     const {
       organisation,
       repositories,
+      request,
     } = this.state;
 
     return (
@@ -56,6 +66,7 @@ class HomepageContainer extends Component {
         onSubmit={this.onSubmit}
         organisation={organisation}
         repositories={repositories}
+        request={request}
       />
     );
   }

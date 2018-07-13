@@ -15,6 +15,8 @@ module.exports = {
     memcached.get(key, (err, data) => {
       if (err) return next(err);
       if (data) return res.send(data);
+
+      // @TODO - Monkeypatch res.send() so .set() is encapsulated with this middleware
       return next(key);
     });
   },

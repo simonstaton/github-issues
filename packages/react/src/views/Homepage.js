@@ -1,34 +1,57 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
-export const HomepageView = ({ onSubmit, onChange, organisation, repositories }) => (
+export const HomepageView = ({
+  onChange,
+  onSubmit,
+  request,
+  organisation,
+  repositories,
+}) => (
   <main>
     <Helmet>
       <title>
-        404 Not Found
+        Github Issue Finder
       </title>
       <meta name="description" content="Github issue finder" />
     </Helmet>
     <form onSubmit={onSubmit}>
-      <input type="text" onChange={onChange} value={organisation} />
+      <label htmlFor="organisation">
+        Organisation
+        <input id="organisation" type="text" onChange={onChange} value={organisation} />
+      </label>
       <button type="submit">
         Submit
       </button>
     </form>
-    <ul>
-      {repositories.map(repo => (
-        <li key={repo.id}>
-          Test
-        </li>
-      ))}
-    </ul>
+    {request === 'loading' && (
+      <p>
+        Loading...
+      </p>
+    )}
+    {request === 'error' && (
+      <p>
+        Error
+      </p>
+    )}
+    {request === 'loaded' && (
+      <Redirect to={
+        {
+          pathname: organisation,
+          state: { repositories },
+        }
+      }
+      />
+    )}
   </main>
 );
 
 HomepageView.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  request: PropTypes.string.isRequired,
   organisation: PropTypes.string.isRequired,
   repositories: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

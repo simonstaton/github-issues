@@ -4,6 +4,9 @@
     "browser": true,
     "node": true
   },
+  "globals": {
+    "IS_CLIENT": true
+  },
   "plugins": [
     "react"
   ],

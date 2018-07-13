@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import {
   HomepageContainer,
+  OrganisationContainer,
+  RepoContainer,
 } from './containers';
 
 import {
@@ -14,9 +16,6 @@ import {
   Header,
 } from './components';
 
-
-// <Route path="/:category" component={IssuesContainer} />
-
 const App = () => (
   <div>
     <Helmet titleTemplate="%s | github-issues.com">
@@ -25,6 +24,8 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={HomepageContainer} />
+      <Route exact path="/:org" component={OrganisationContainer} />
+      <Route exact path="/:org/:name" component={RepoContainer} />
       <Route component={NotFoundView} />
     </Switch>
   </div>

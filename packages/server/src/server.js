@@ -18,7 +18,7 @@ app
     saveUninitialized: true,
   }))
   .use('/scripts', Express.static(`${__dirname}/../node_modules/@github-issues/react/dist/static`))
-  .use(flash())
+  .use(flash()) // @TODO - bind flash messages to react store and implement toast component
   .use('/api', api)
   .get('*', reactHandler)
   .use(errorHandler)

@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+
 const IS_DEV = process.env.NODE_ENV === 'development';
 
 module.exports = {
@@ -15,9 +16,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        BROWSER: JSON.stringify(true),
-      },
+      IS_CLIENT: JSON.stringify(true),
     }),
   ],
   module: {
@@ -29,13 +28,17 @@ module.exports = {
         options: {
           presets: ['react',
             ['env', {
-              targets: {
                 browsers: ['last 2 versions', 'safari >= 7'],
               },
-            }]
+            }],
+          ],
+          plugins: [
+            'transform-runtime',
+            'transform-async-to-generator',
           ],
         },
       },
+              targets: {
     ],
   },
 };
